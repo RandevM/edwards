@@ -1,0 +1,6 @@
+<?php
+ add_theme_support('post-thumbnails');set_post_thumbnail_size(320,320,true);function register_menus(){register_nav_menus(array('header-menu'=>__('Header Menu'),'product-menu'=>__('Product Menu')));}add_action('init','register_menus');function widgets_init(){register_sidebar(array('name'=>__('Top Left','adtrakWP'),'id'=>'top-left','before_widget'=>'<div id="%1$s" class="widget-container %2$s">','after_widget'=>'</div>','before_title'=>'<h3 class="widget-title">','after_title'=>'</h3>',));}add_action('widgets_init','widgets_init');function update_search_form($form){$form='<section class="search"><form role="search" method="get" id="search-form" action="'.home_url('/').'" >
+    <label class="screen-reader-text" for="s">'.__('','domain').'</label>
+    <input type="search" value="'.get_search_query().'" name="s" id="s" placeholder="Search Our Products" />
+    <input type="submit" id="searchsubmit" value="'.esc_attr__('Search','domain').'" />
+    </form></section>';return $form;}add_filter('get_search_form','update_search_form');?>
